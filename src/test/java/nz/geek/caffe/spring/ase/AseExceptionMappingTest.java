@@ -87,9 +87,7 @@ public class AseExceptionMappingTest {
      * Test for SPR-11097. This test will pass.
      */
     @Test
-    public void testForeignKeyConstrainViolation() {
-	this.jdbcTemplate.execute("INSERT INTO TEST_PARENT VALUES (1, 'test')");
-
+    public void testForeignKeyConstraintViolation() {
 	try {
 	    this.jdbcTemplate
 		    .execute("INSERT INTO TEST_CHILD VALUES (1, 'test', 2)");
@@ -105,9 +103,7 @@ public class AseExceptionMappingTest {
      * batch since this is what Hibernate will typically do.
      */
     @Test
-    public void testForeignKeyConstrainViolationBatch() {
-	this.jdbcTemplate.execute("INSERT INTO TEST_PARENT VALUES (1, 'test')");
-
+    public void testForeignKeyConstraintViolationBatch() {
 	// this willl currently fail since the exception is translated as
 	// TransientDataAccessResourceExceptio
 
@@ -125,9 +121,7 @@ public class AseExceptionMappingTest {
      * currently mapped in the patched config.
      */
     @Test
-    public void testForeignKeyConstrainViolationBatchWithPatch() {
-	this.jdbcTemplate.execute("INSERT INTO TEST_PARENT VALUES (1, 'test')");
-
+    public void testForeignKeyConstraintViolationBatchWithPatch() {
 	// override to ues our custom mappings for test
 
 	final SQLErrorCodesFactory factory = new SQLErrorCodesFactory() {
